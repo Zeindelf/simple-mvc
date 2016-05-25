@@ -1,0 +1,19 @@
+.header {
+	&__container {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		flex-wrap: wrap;
+	}
+
+	&__title {
+		a {
+			font-size: $font-size-large;
+			color: $color-base-lighter;
+		}
+
+		p {
+			font-size: $font-size-small;
+		}
+	}
+}

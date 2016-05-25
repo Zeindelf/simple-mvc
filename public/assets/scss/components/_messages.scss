@@ -1,0 +1,47 @@
+.alert {
+	width: 100%;
+	font-family: $message-font-family;
+	font-size: $message-font-size;
+
+	padding: $message-padding;
+	margin: $message-margin;
+
+	position: relative;
+
+	@include border-radius(3px);
+
+	&.alert-success {
+		background-color: $success-bg;
+		border-color: $success-border;
+		color: $success-text;
+	}
+
+	&.alert-info {
+		background-color: $info-bg;
+		border-color: $info-border;
+		color: $info-text;
+	}
+
+	&.alert-warning {
+		background-color: $warning-bg;
+		border-color: $warning-border;
+		color: $warning-text;
+	}
+
+	&.alert-danger {
+		background-color: $danger-bg;
+		border-color: $danger-border;
+		color: $danger-text;
+	}
+
+	.alert-close:after {
+		content: "\2716";
+		position: absolute;
+		display: block;
+
+		top: $message-close-padding;
+		right: $message-close-padding;
+		cursor: pointer;
+		font-weight: $font-weight-bold;
+	}
+}

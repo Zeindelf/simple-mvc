@@ -1,0 +1,4 @@
+/vendor/
+/tmp/smarty/
+/app/Config.php
+prepros.cfg

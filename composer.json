@@ -1,0 +1,21 @@
+{
+    "name": "zeindelf/mvc",
+    "description": "Estrutura básica de MVC com PHP OO e Smarty Template Engine",
+    "require": {
+        "php": ">=5.5.0",
+        "smarty/smarty": "~3.1"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Wellington Barreto",
+            "email": "zeindelf@hotmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "" : "src/"
+        }
+    }
+}

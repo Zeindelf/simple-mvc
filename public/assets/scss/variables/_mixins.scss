@@ -1,0 +1,24 @@
+@mixin border-radius($radius) {
+    -webkit-border-radius: $radius;
+       -moz-border-radius: $radius;
+        -ms-border-radius: $radius;
+            border-radius: $radius;
+}
+
+@mixin border-radius-all($radius-top, $radius-right, $radius-bottom, $radius-left) {
+    -webkit-border-radius: $radius-top $radius-right $radius-bottom $radius-left;
+       -moz-border-radius: $radius-top $radius-right $radius-bottom $radius-left;
+        -ms-border-radius: $radius-top $radius-right $radius-bottom $radius-left;
+            border-radius: $radius-top $radius-right $radius-bottom $radius-left;
+}
+
+@mixin transition($transition) {
+    -webkit-transition: $transition;
+         -o-transition: $transition;
+            transition: $transition;
+}
+
+@mixin box-shadow($shadow) {
+    -webkit-box-shadow: $shadow;
+            box-shadow: $shadow;
+}

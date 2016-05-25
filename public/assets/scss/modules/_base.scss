@@ -1,0 +1,39 @@
+body {
+	font-family: $font-family-base;
+	font-size: $font-size-base;
+	font-weight: $font-weight-light;
+
+	background-color: $body-bg;
+	color: $text-color-base;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+}
+
+.container {
+	width: 100%;
+	max-width: 1280px;
+	margin: 0 auto;
+	padding: 0 1em;
+}
+
+.main {
+	&__header,
+	&__footer {
+		background: #333;
+		color: #eee;
+	}
+
+	&__header {
+		padding: 1.3em 0;
+	}
+
+	&__title {
+		margin-top: 1em;
+	}
+
+	&__content {
+		background: $color-base-lighter;
+		flex: 1 0 auto;
+	}
+}

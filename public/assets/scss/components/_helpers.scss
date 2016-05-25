@@ -1,0 +1,26 @@
+.button {
+	font-size: $font-size-medium;
+	font-family: $font-family-base;
+	font-weight: $font-weight-base;
+
+	background-color: $color-base-light;
+	color: $color-base-darkest;
+
+	display: inline-block;
+	line-height: 2.4;
+	padding: 0 2em;
+	margin-top: .5em;
+	margin-right: 1em;
+	cursor: pointer;
+	text-decoration: none;
+	outline: none;
+	border: 1px solid darken($color-base-light, 10%);
+
+	@include border-radius(3px);
+	@include transition(.3s);
+
+	&:hover {
+		background-color: darken($color-base-light, 15%);
+		color: $color-base-lighter;
+	}
+}

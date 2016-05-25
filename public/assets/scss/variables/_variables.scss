@@ -1,0 +1,55 @@
+/* COLORS */
+$color-base:				#666 !default;
+$color-base-lighter:		lighten($color-base, 53.5%) !default; // #eee
+$color-base-light:			lighten($color-base, 20%) !default; // #999
+$color-base-dark:			darken($color-base, 13.2%) !default; // #444
+$color-base-darkest:		darken($color-base, 26.8%) !default; // #222
+
+
+/* TYPOGRAPHY */
+$font-family-sans-serif:	'Roboto Condensed', sans-serif !default;
+$font-family-serif:			Georgia, "Times New Roman", serif !default;
+$font-family-monospace:		Menlo, Monaco, Consolas, "Courier New", monospace !default;
+$font-family-base:			$font-family-sans-serif !default;
+
+$font-size-base:			16px !default;
+$font-size-small:			0.8em !default;
+$font-size-medium:			1.2em !default;
+$font-size-large:			1.5em !default;
+
+$font-weight-light:			300 !default;
+$font-weight-base:			400 !default;
+$font-weight-bold:			700 !default;
+
+
+/* SETTINGS BODY */
+$body-bg:					#fff !default;
+$text-color-base:			#222 !default;
+
+
+/* SETTINGS ALERTS */
+$success-text:				#3c763d !default;
+$success-bg:				#dff0d8 !default;
+$success-border:			darken($success-bg, 5%) !default;
+
+$info-text:					#31708f !default;
+$info-bg:					#d9edf7 !default;
+$info-border:				darken($info-bg, 7%) !default;
+
+$warning-text:				#8a6d3b !default;
+$warning-bg:				#faf2cc !default;
+$warning-border:			darken($warning-bg, 15%) !default;
+
+$danger-text:				#a94442 !default;
+$danger-bg:					#f2dede !default;
+$danger-border:				darken($danger-bg, 5%) !default;
+
+
+/* SETTINGS MESSAGES */
+$message-font-family:		$font-family-base;
+$message-font-size:			$font-size-base;
+
+$message-padding:			1em 2em 1em 1em ;
+$message-margin:			1em auto;
+
+$message-close-padding:		1em;

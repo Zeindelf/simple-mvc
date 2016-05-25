@@ -1,0 +1,30 @@
+.main {
+	&__nav {
+		ul {
+			list-style: none;
+			flex-wrap: wrap;
+			display: flex;
+		}
+
+		li {
+			margin-right: 1em;
+
+			&:last-child {
+				margin-right: 0;
+			}
+		}
+
+		a {
+			line-height: 2.2;
+			padding: .5em 1em;
+			background: seagreen;
+			color: $color-base-lighter;
+
+			@include border-radius(3px);
+
+			&:hover {
+				background: darken(seagreen, 10%);
+			}
+		}
+	}
+}

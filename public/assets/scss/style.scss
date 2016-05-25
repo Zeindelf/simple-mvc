@@ -1,0 +1,16 @@
+// Core
+@import "variables/variables";
+@import "variables/mixins";
+
+// Dependencies
+@import "core/reset";
+
+// Style Geral
+@import "modules/base";
+@import "modules/footer";
+@import "modules/header-nav";
+@import "modules/header";
+
+// Components
+@import "components/helpers";
+@import "components/messages";

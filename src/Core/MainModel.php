@@ -10,42 +10,6 @@ namespace Core;
 class MainModel
 {
 	//------------------------------------------------------------
-	//	PROPERTIES
-	//------------------------------------------------------------
-
-	/**
-	 * Contém a instância Create do Banco de Dados
-	 *
-	 * @access protected
-	 * @var object
-	 */
-	protected $create;
-
-	/**
-	 * Contém a instância Delete do Banco de Dados
-	 *
-	 * @access protected
-	 * @var object
-	 */
-	protected $delete;
-
-	/**
-	 * Contém a instância Read do Banco de Dados
-	 *
-	 * @access protected
-	 * @var object
-	 */
-	protected $read;
-
-	/**
-	 * Contém a instância Update do Banco de Dados
-	 *
-	 * @access protected
-	 * @var object
-	 */
-	protected $update;
-
-	//------------------------------------------------------------
 	//	PROTECTED METHODS
 	//------------------------------------------------------------
 
@@ -55,10 +19,9 @@ class MainModel
 	 * @access protected
 	 * @return object
 	 */
-	protected function getCreate()
+	protected function newCreate()
 	{
-		$this->create = new \Database\Create;
-		return $this->create;
+		return new \Database\Create;
 	}
 
 	/**
@@ -67,10 +30,9 @@ class MainModel
 	 * @access protected
 	 * @return object
 	 */
-	protected function getDelete()
+	protected function newDelete()
 	{
-		$this->delete = new \Database\Delete;
-		return $this->delete;
+		return new \Database\Delete;
 	}
 
 	/**
@@ -79,10 +41,9 @@ class MainModel
 	 * @access protected
 	 * @return object
 	 */
-	protected function getRead()
+	protected function newRead()
 	{
-		$this->read = new \Database\Read;
-		return $this->read;
+		return new \Database\Read;
 	}
 
 	/**
@@ -91,9 +52,8 @@ class MainModel
 	 * @access protected
 	 * @return object
 	 */
-	protected function getUpdate()
+	protected function newUpdate()
 	{
-		$this->update = new \Database\Update;
-		return $this->update;
+		return new \Database\Update;
 	}
 }

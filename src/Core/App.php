@@ -2,7 +2,7 @@
 
 namespace Core;
 
-use App\Controllers\Error404Controller;
+use Helpers\Redirect;
 
 /**
  * Classe principal onde é feito todo o tratamento das requisições
@@ -199,6 +199,6 @@ class App
 	{
 		$this->result = false;
 
-		return new Error404Controller;
+		return Redirect::to(404);
 	}
 }

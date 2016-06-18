@@ -24,6 +24,6 @@ class IndexController extends MainController
 	{
 		$model = $this->model('Index');
 
-		$this->view($this->getTemplate(), $model->getData());
+		return $this->view($this->getTemplate(), $model->getData());
 	}
 }

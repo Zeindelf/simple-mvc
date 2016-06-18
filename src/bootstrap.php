@@ -1,7 +1,8 @@
 <?php
 
-use Helpers\Load;
 use Core\App;
+
+use Helpers\Load;
 
 /**
  * Inicia o buffering

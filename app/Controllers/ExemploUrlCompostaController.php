@@ -25,7 +25,7 @@ class ExemploUrlCompostaController extends MainController
 	{
 		$model = $this->model('ExemploUrlComposta');
 
-		$this->view($this->getTemplate(), $model->getData());
+		return $this->view($this->getTemplate(), $model->getData());
 	}
 
 	/**
@@ -39,7 +39,7 @@ class ExemploUrlCompostaController extends MainController
 	{
 		$model = $this->model('ExemploMetodoComposto');
 
-		$this->view($this->getTemplate(), $model->getData());
+		return $this->view($this->getTemplate(), $model->getData());
 	}
 
 	/**
@@ -55,6 +55,6 @@ class ExemploUrlCompostaController extends MainController
 	{
 		// Algum processamento
 
-		$this->redirect('index');
+		return $this->redirect('index');
 	}
 }

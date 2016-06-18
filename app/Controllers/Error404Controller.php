@@ -23,7 +23,7 @@ class Error404Controller extends MainController
 	{
 		$model = $this->model('Error404');
 
-		$this->view($this->getTemplate(), $model->getData());
+		return $this->view($this->getTemplate(), $model->getData());
 	}
 
 	/**
@@ -33,5 +33,6 @@ class Error404Controller extends MainController
 	 */
 	public function indexAction()
 	{
+		//
 	}
 }

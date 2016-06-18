@@ -1,5 +1,14 @@
 <?php
 
+//------------------------------------------------------------
+// Configurações gerais
+//------------------------------------------------------------
+
+/**
+ * Configura a timezone
+ */
+define('DEFAULT_TIMEZONE', 'America/Sao_Paulo');
+
 /**
  * Definições base
  *
@@ -13,7 +22,7 @@ define('BASE_URL', 'http://localhost/Projects/simple-mvc/public');
 define('BASE_CSS', BASE_URL . '/assets/css');
 define('BASE_JS', BASE_URL . '/assets/js');
 define('SITE_NAME', 'Simple MVC');
-define('SITE_DESC', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.');
+define('SITE_DESC', '');
 
 
 /**
@@ -32,10 +41,15 @@ define('DB_USER', 'root');
 define('DB_PASS', '');
 
 
+//------------------------------------------------------------
+// Configurações gerais do sistema
+// Aconselhável não mudá-las sem entender como e onde funcionam
+//------------------------------------------------------------
+
 /**
  * Constantes de configuração dos diretórios do Smarty
  */
-define('SMARTY_PATH', ROOT_DIR . DS . 'tmp' . DS . 'smarty' );
+define('SMARTY_PATH', ROOT_DIR . DS . 'storage' . DS . 'smarty' );
 define('SMARTY_CONFIG', APP_DIR . DS . 'Config.php');
 define('SMARTY_CACHE', SMARTY_PATH . DS . 'cache');
 define('SMARTY_COMPILE', SMARTY_PATH . DS . 'templates_c');
@@ -55,9 +69,3 @@ define('MSG_SUCCESS',	'alert-success');
 define('MSG_INFO',		'alert-info');
 define('MSG_WARNING',	'alert-warning');
 define('MSG_DANGER',	'alert-danger');
-
-
-/**
- * Configura a timezone
- */
-define('DEFAULT_TIMEZONE', 'America/Sao_Paulo');

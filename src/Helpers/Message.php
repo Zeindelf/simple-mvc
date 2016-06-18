@@ -5,7 +5,8 @@ namespace Helpers;
 use Core\Config;
 
 /**
- * Classe para formatção de mensagens
+ * Classe para formatação de mensagens
+ * Também trabalha em conjunto com a classe helper Flash
  */
 class Message
 {
@@ -52,6 +53,7 @@ class Message
 	 * No parâmetro $close, caso utilize o Bootstrap, informe a string 'bootstrap' para
 	 * habilitar o botão de fechamento da caixa de mensagem
 	 *
+	 * @access public
 	 * @param string 	$type 		Informe 'success' | 'info' | 'warning' | 'danger'
 	 * @param string 	$message 	Sua mensagem (pode usar formatção HTML)
 	 * @param boolean 	$close 		Esconde/Mostra botão para fechar o bloco. Default: true
@@ -60,17 +62,29 @@ class Message
 	public static function get($type, $message, $close = true)
 	{
 		self::setType($type);
+		if ( self::$type ):
+			self::$message = '<div class="alert ' . self::$type . '">';
+			if ( $close === 'bootstrap' ):
+				self::$message .= self::$bootstrapButton;
+			elseif ( $close ):
+				self::$message .= '<span class="alert-close"></span>';
+			endif;
+			self::$message .= $message;
+			self::$message .= '</div>';
 
-		self::$message = '<div class="alert ' . self::$type . '">';
-		if ( $close === 'bootstrap' ):
-			self::$message .= self::$bootstrapButton;
-		elseif ( $close ):
-			self::$message .= '<span class="alert-close"></span>';
+			return self::$message;
+		else:
+			echo '<b>O tipo de mensagem informado n&atilde;o existe. Utilize algum destes:
+					<ul>
+						<li>success</li>
+						<li>info</li>
+						<li>warning</li>
+						<li>danger</li>
+					</ul>
+				</b>';
+
+			return false;
 		endif;
-		self::$message .= $message;
-		self::$message .= '</div>';
-
-		return self::$message;
 	}
 
 	//------------------------------------------------------------
@@ -80,28 +94,27 @@ class Message
 	/**
 	 * Seta o tipo de mensagem
 	 *
+	 * @access private
 	 * @param string 	$type 		Decidida pelo método get()
 	 * @return string
 	 */
 	private static function setType($type)
 	{
-		self::$class = Config::get('message');
-
 		switch ( $type ):
 			case 'success':
-				self::$type = self::$class['success'];
+				self::$type = Config::get('class.success');
 				break;
 			case 'info':
-				self::$type = self::$class['info'];
+				self::$type = Config::get('class.info');
 				break;
 			case 'warning':
-				self::$type = self::$class['warning'];
+				self::$type = Config::get('class.warning');
 				break;
 			case 'danger':
-				self::$type = self::$class['danger'];
+				self::$type = Config::get('class.danger');
 				break;
 			default:
-				self::$type = null;
+				self::$type = false;
 		endswitch;
 
 		return self::$type;

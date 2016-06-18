@@ -8,5 +8,5 @@ use Core\Config;
 Config::set('load', [
 	'database',
 	'message',
-	'smarty'
+	'smarty',
 ]);

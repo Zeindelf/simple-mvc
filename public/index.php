@@ -10,14 +10,13 @@ define('APP_DIR', realpath(__DIR__ . '/../app/'));
 define('SRC_DIR', realpath(__DIR__ . '/../src/'));
 define('PUBLIC_DIR', realpath(__DIR__));
 
-
 /**
  * Verifica e carrega o autoload do Composer
  */
 if ( file_exists(ROOT_DIR . DS . 'vendor' . DS . 'autoload.php') ):
     require_once ROOT_DIR . DS . 'vendor' . DS . 'autoload.php';
 else:
-    include_once ROOT_DIR . DS . 'storage' . DS . 'warnings' . DS . 'missing-composer.php';
+    include_once ROOT_DIR . DS . 'misc' . DS . 'warnings' . DS . 'missing-composer.php';
     die();
 endif;
 
@@ -25,7 +24,7 @@ endif;
  * Checa se existe o arquivo de configuração
  */
 if ( !is_readable(APP_DIR . DS .'Config.php') ):
-    include_once ROOT_DIR . DS . 'storage' . DS . 'warnings' . DS . 'missing-config.php';
+    include_once ROOT_DIR . DS . 'misc' . DS . 'warnings' . DS . 'missing-config.php';
     die();
 endif;
 

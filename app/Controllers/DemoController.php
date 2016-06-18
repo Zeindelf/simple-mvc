@@ -13,6 +13,6 @@ class DemoController extends MainController
 	{
 		$model = $this->model('Demo', 'Demo');
 
-		$this->view($this->getTemplate(), $model->getData());
+		return $this->view($this->getTemplate(), $model->getData());
 	}
 }

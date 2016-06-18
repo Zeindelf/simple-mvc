@@ -56,7 +56,7 @@ class MainView
 
 		$this->setTplName($template);
 		$this->methodName = $this->methodName ?: 'index';
-		$this->templatePath = $this->className . '/' . $this->methodName . '.tpl';
+		$this->templatePath = $this->className . DS . $this->methodName . '.tpl';
 
 		if ( !is_null($data) ):
 			foreach ( $data as $keys => $values ):
@@ -79,13 +79,11 @@ class MainView
 	 */
 	private function smartyInit()
 	{
-		$config = Config::get('smarty');
-
 		$this->view = new \Smarty;
-		$this->view->setConfigDir($config['config']);
-		$this->view->setCacheDir($config['cache']);
-		$this->view->setTemplateDir($config['template']);
-		$this->view->setCompileDir($config['compile']);
+		$this->view->setConfigDir(Config::get('smarty.config'));
+		$this->view->setCacheDir(Config::get('smarty.cache'));
+		$this->view->setTemplateDir(Config::get('smarty.template'));
+		$this->view->setCompileDir(Config::get('smarty.compile'));
 
 		return $this->view;
 	}

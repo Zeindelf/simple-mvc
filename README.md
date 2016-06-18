@@ -10,17 +10,17 @@ Estrutura básica inicial de um MVC com PHP com uso do [Smarty Template Engine](
     * Orientação a Objetos
     * Design Pattern MVC
     * Smarty ([documentação aqui](http://www.smarty.net/docs/en/))
-* PHP na versão igual ou acima da 5.4
+* PHP na versão igual ou acima da 5.5
 * Utilizar a [PSR-4](http://www.php-fig.org/psr/psr-4/), tal como **namespaces**
 * Ter o Composer instalado
 
 #### Uso
 
 * Clone ou faça o download do repositório para sua máquina
-* Tendo o Composer instalado, abra o terminal/prompt de comando, navegue até a pasta raiz e rode ```composer update```
-* Configure seu host para apontar para o diretório ```/public```
-* Configure as definições base em ```/app/Config.example.php```
-* Em seguida, renomeie o arquivo para ```Config.php```
+* Tendo o Composer instalado, abra o terminal/prompt de comando, navegue até a pasta raiz e rode `composer update`
+* Configure seu host para apontar para o diretório `/public`
+* Configure as definições base em `/app/Config.example.php`
+* Em seguida, renomeie o arquivo para `Config.php`
 
 #### Configs
 
@@ -30,20 +30,20 @@ Para cada array de configuração criado em `/app/Config`, cadastre o carregamen
 
 ## Controllers
 * Os arquivos do controller devem começar com letra maiúscula e terminar com o sufixo **Controller.php**
-    * ```ExemploController.php```
+    * `ExemploController.php`
 
 * Controller com nome composto deve utilizar **UpperCamelCase**
-    * ```ExemploCompostoController.php```
+    * `ExemploCompostoController.php`
 
 * Toda action (métodos do controller) começa com letra minúscula e termina com o sufixo **Action**
-    * ```exemploAction()```
+    * `exemploAction()`
 
 * Actions com nome composto deve utilizar **lowerCamelCase**
-    * ```exemploCompostoAction()```
+    * `exemploCompostoAction()`
 
-* Se não houver um método ```indexAction()``` em seu controller, quando acessado, será retornado a página Error404
+* Se não houver um método `indexAction()` em seu controller, quando acessado, será retornado a página Error404
 
-* Controllers devem ser criados dentro do diretório ```/app/Controllers```
+* Controllers devem ser criados dentro do diretório `/app/Controllers`
 
 * Seu controller deve extender de **MainController**
 
@@ -58,18 +58,19 @@ class ExemploController extends MainController
 {
 	public function indexAction()
 	{
+        // Seu código
 	}
 }
 ```
 
 ## Models
 * Os arquivos de models devem começar com letra maiúscula e terminar com o sufixo **Model.php**
-    * ```ExemploModel.php```
+    * `ExemploModel.php`
 
 * Model com nome composto deve utilizar **UpperCamelCase**
-    * ```ExemploCompostoModel.php```
+    * `ExemploCompostoModel.php`
 
-* Os models devem ser criados dentro do diretório ```/app/Models```
+* Os models devem ser criados dentro do diretório `/app/Models`
 
 * Seu model deve extender de **MainModel**
 
@@ -88,27 +89,27 @@ class ExemploModel extends MainModel
 ```
 
 ## Views
-Para cada **Controller**, um diretório deve ser criado em ```/resource/views/templates```, contendo o mesmo nome da classe em **lowercase** e sem o sufixo Controller
-* **Classe:** ```class ExemploController```
-* **Diretório:** ```exemplo```
+Para cada **Controller**, um diretório deve ser criado em `/resource/views/templates`, contendo o mesmo nome da classe em **lowercase** e sem o sufixo Controller
+* **Classe:** `class ExemploController`
+* **Diretório:** `exemplo`
 
 -
 
-Para **Controllers** com nome composto, cada palavra deverá ser separada por hífen ```-```
-* **Classe:** ```class ExemploCompostoController```
-* **Diretório:** ```exemplo-composto```
+Para **Controllers** com nome composto, cada palavra deverá ser separada por hífen `-`
+* **Classe:** `class ExemploCompostoController`
+* **Diretório:** `exemplo-composto`
 
 -
 
 Para cada **Action** (métodos do Controller), deverá ser criado em seu respectivo diretório (o que leva o nome da classe) um arquivo com o mesmo nome do método em **lowercase**, sem o sufixo Action e com a extensão **.tpl**
-* **Action:** ```exemploAction()```
-* **Arquivo:** ```exemplo.tpl```
+* **Action:** `exemploAction()`
+* **Arquivo:** `exemplo.tpl`
 
 -
 
-Para actions com nome composto, cada palavra deverá ser separada por hífen ```-```
-* **Action:** ```exemploCompostoAction()```
-* **Arquivo:** ```exemplo-composto.tpl```
+Para actions com nome composto, cada palavra deverá ser separada por hífen `-`
+* **Action:** `exemploCompostoAction()`
+* **Arquivo:** `exemplo-composto.tpl`
 
 # Sintaxe
 
@@ -130,10 +131,10 @@ Para o parâmetro `$dir`, caso queira organizar melhor seus Models por subdiret�
 $this->view($template, array $data = null);
 ```
 
-Instancia a MainView para que ela se encarregue de renderizar a página HTML.
+Instancia a **MainView** para que ela se encarregue de renderizar a página HTML.
 
 Ao utilizar o método `$this->view($template, $data = [])`, serão solicitados dois parâmetros:
-* `$template` - apenas informe `$this->getTemplate()` (os padrões de nomenclaturas devem ser seguidos para evitar erros aqui);
+* `$template` - apenas informe o método `$this->getTemplate()`;
 * `$data` - parâmetro opicional. Deve ser um array que será mandado para a view onde o **Smarty** terá acesso;
 
 Leia a documentação do método para mais detalhes.

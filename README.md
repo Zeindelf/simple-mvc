@@ -128,16 +128,17 @@ Para o parâmetro `$dir`, caso queira organizar melhor seus Models por subdiret�
 -
 
 ```php
-$this->view($template, array $data = null);
+$this->view($template, array $data = null, array $partials = null);
 ```
 
 Instancia a **MainView** para que ela se encarregue de renderizar a página HTML.
 
-Ao utilizar o método `$this->view($template, $data = [])`, serão solicitados dois parâmetros:
+Ao utilizar o método `$this->view($template, $data = [], $partials = [])`, serão solicitados três parâmetros:
 * `$template` - apenas informe o método `$this->getTemplate()`;
 * `$data` - parâmetro opicional. Deve ser um array que será mandado para a view onde o **Smarty** terá acesso;
+* `$partials` - parâmetro opicional. Deve ser um array que será mandado para a view onde o **Smarty** terá acesso;
 
-Leia a documentação do método para mais detalhes.
+Leia a documentação do método para mais detalhes e exemplos de uso.
 
 -
 

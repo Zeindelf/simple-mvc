@@ -157,44 +157,40 @@ Caso queira que o direcionamento seja para: `dominio.com/teste/teste-redireciona
 
 ## Métodos disponíveis no Model
 
-```php
-$this->getCreate();
-```
-Instancia a classe **Create** do Banco de Dados que estará disponível no **atributo** `$this->create`.
+`$this->newCreate()` retorna a instância da classe **Create** do Banco de Dados.
 
-A partir de `$this->create` você terá acesso a todos os métodos públicos da classe Create. Por exemplo, inserindo dados no banco:
-`$this->create->executeCreate($table, array $data)`
+```php
+$create = $this->newCreate();
+$create->executeCreate('tabela', $dados[]);
+```
 
 -
 
-```php
-$this->getDelete();
-```
-Instancia a classe **Delete** do Banco de Dados que estará disponível no **atributo** `$this->delete`.
+`$this->newDelete()` retorna a instância da classe **Delete** do Banco de Dados.
 
-A partir de `$this->delete` você terá acesso a todos os métodos públicos da classe Delete. Por exemplo, excluindo dados no banco:
-`$this->delete->executeDelete($table, $terms, $parseString)`
+```php
+$delete = $this->newDelete();
+$delete->executeDelete('tabela', 'WHERE id = :id', 'id=1');
+```
 
 -
 
-```php
-$this->getRead();
-```
-Instancia a classe **Read** do Banco de Dados que estará disponível no **atributo** `$this->read`.
+`$this->newRead()` retorna a instância da classe **Read** do Banco de Dados.
 
-A partir de `$this->read` você terá acesso a todos os métodos públicos da classe Read. Por exemplo, consultando dados no banco:
-`$this->read->executeRead($table)`
+```php
+$read = $this->newRead();
+$read->executeRead('tabela');
+```
 
 -
 
+`$this->newUpdate()` retorna a instância da classe **Update** do Banco de Dados.
+
 ```php
-$this->getUpdate();
+$update = $this->newUpdate();
+$update->executeUpdate('tabela', $dados[], 'WHERE name = :nome', 'nome=zeindelf');
+
 ```
-Instancia a classe **Update** do Banco de Dados que estará disponível no **atributo** `$this->update`.
-
-A partir de `$this->update` você terá acesso a todos os métodos públicos da classe Update. Por exemplo, alterando dados no banco:
-`$this->update->executeUpdate($table, array $data, $terms, $parseString)`
-
 
 -
 Nas classes do Banco de Dados localizadas em `/src/Database`, há exemplos de uso e  suas respectivas documentações.

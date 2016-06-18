@@ -153,6 +153,8 @@ Basta informar o caminho após a URL base. Ex:
 
 Caso queira que o direcionamento seja para: `dominio.com/teste/teste-redirecionamento`, informe em `$path` a string `'/teste/teste-redirecionamento'`.
 
+Caso for para algum erro, apenas informe seu número: 404, 503, etc...
+
 **Obs.:** O uso de barra `/` é facultativo. Pode ser informado `'/teste/teste-redirecionamento'` ou `'teste/teste-redirecionamento'`
 
 

@@ -55,6 +55,8 @@ class ExemploUrlCompostaController extends MainController
 	{
 		// Algum processamento
 
+		// Realiza a mesma função de redirecionar para a index
+		//return $this->redirect();
 		return $this->redirect('index');
 	}
 }

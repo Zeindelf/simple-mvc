@@ -2,7 +2,7 @@
 
 namespace Core;
 
-use App\Controllers\Error404Controller;
+use Helpers\Redirect;
 
 /**
  * Classe principal do Controller
@@ -43,7 +43,7 @@ class MainController
 	 */
 	public function indexAction()
 	{
-		return new Error404Controller;
+		return $this->redirect(404);
 	}
 
 	//------------------------------------------------------------
@@ -129,23 +129,18 @@ class MainController
 	 * Realiza os direcionamentos da aplicação
 	 * A informação da barra inicial é facultativa
 	 *
-	 * @param string 	$path 		Nome da URI para onde deseja ser redirecionado
+	 * Em caso de páginas de erros (404 | 403 | 502 | etc.), basta
+	 * informar o número de erro
+	 *
+	 * Se não não for informado nenhum valor em $location, o redirecionamento
+	 * será para a index principal (/index/index)
+	 *
+	 * @param string 	$location 		Nome da URI para onde deseja ser redirecionado
 	 * @return redirect
 	 */
-	protected function redirect($path)
+	protected function redirect($location = false)
 	{
-		$path = strtolower(trim($path));
-
-		if ( $path === 'index' || $path === '/index' ):
-			$path = BASE_URL;
-		elseif ( substr($path, 0, 1) === '/' ):
-			$path = BASE_URL . $path;
-		else:
-			$path = BASE_URL . '/' . $path;
-		endif;
-
-		header('location: ' . $path);
-		die();
+		return Redirect::to($location);
 	}
 
 	/**

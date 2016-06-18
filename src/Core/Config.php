@@ -90,3 +90,4 @@ class Config
             return false;
         endif;
     }
+}

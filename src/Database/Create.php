@@ -7,7 +7,6 @@ use Database\Conn;
 use Helpers\Message;
 
 /**
- * Classe Create
  * Realiza cadastros no Banco de Dados
  */
 class Create extends Conn
@@ -26,7 +25,7 @@ class Create extends Conn
 	/**
 	 * Dados a serem inseridos
 	 *
-	 * @var string
+	 * @var array
 	 */
 	private $data;
 
@@ -57,13 +56,14 @@ class Create extends Conn
 
 	/**
 	 * Executa inserções no Banco de Dados
-	 * Informe o nome da tabela e um array atribuitivo com o nome da coluna e valor
+	 * Informe o nome da tabela e os dados a serem inseridos em um array com
+	 * o nome da coluna e valor
 	 *
-	 * $data = array(
+	 * $data = [
      * 		'nomeDaColunaUm' 	=> 'valorUm',
      * 		'nomeDaColunaDois' 	=> 'valorDois',
      * 		...
-     * );
+     * ];
 	 *
 	 * @access public
 	 * @param string 	$table 		Informe o nome da tabela
@@ -79,10 +79,10 @@ class Create extends Conn
 	}
 
 	/**
-     * Retorna o ID do último registro inserido ou false caso nenhum registro seja inserido
+     * Retorna o ID do último registro inserido ou false caso a inserção falhe
      *
      * @access public
-     * @return int
+     * @return int|boolean
      */
 	public function getResult()
 	{
@@ -97,6 +97,7 @@ class Create extends Conn
 	 * Obtém o PDO e prepara a query
 	 *
 	 * @access private
+	 * @return void
 	 */
 	private function connect()
 	{
@@ -105,9 +106,10 @@ class Create extends Conn
 	}
 
 	/**
-	 * Cria a sintaxe da query para o Prepared Statements
+	 * Cria a sintaxe da query
 	 *
 	 * @access private
+	 * @return void
 	 */
 	private function getSyntax()
 	{
@@ -118,9 +120,10 @@ class Create extends Conn
 	}
 
 	/**
-	 * Obtém a conexão com a Base de Dados e executa a query
+	 * Obtém a conexão com o Banco de Dados e executa a query
 	 *
 	 * @access private
+	 * @return mix
 	 */
 	private function execute()
 	{
@@ -132,8 +135,8 @@ class Create extends Conn
 		} catch (PDOException $e) {
 			$this->result = null;
 
-			$msg = '<b>Erro ao Cadastrar:</b> ' . $e->getMessage();
-			echo Message::get('danger', $msg, false);
+			$message = '<b>Erro ao Cadastrar:</b> ' . $e->getMessage();
+			echo Message::get('danger', $message, false);
 		}
 	}
 }

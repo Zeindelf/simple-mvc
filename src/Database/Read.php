@@ -7,8 +7,7 @@ use Database\Conn;
 use Helpers\Message;
 
 /**
- * Classe Read
- * Realiza consultas no Banco de Dados.
+ * Realiza consultas no Banco de Dados
  */
 class Read extends Conn
 {
@@ -18,30 +17,35 @@ class Read extends Conn
 
 	/**
 	 * Query de seleção no Banco de Dados
+	 *
 	 * @var string
 	 */
 	private $select;
 
 	/**
 	 * Executa os bindValues
+	 *
 	 * @var string
 	 */
 	private $places;
 
 	/**
 	 * Resultado das seleções
+	 *
 	 * @var array
 	 */
 	private $result;
 
 	/**
 	 * Métodos da PDO
+	 *
 	 * @var PDOStatement
 	 */
 	private $read;
 
 	/**
 	 * Conexão com PDO
+	 *
 	 * @var PDO
 	 */
 	private $conn;
@@ -51,13 +55,15 @@ class Read extends Conn
 	//------------------------------------------------------------
 
 	/**
-     * Executa leituras no Banco de Dados.
-     * Informe o nome da tabela, os termos da seleção e uma análize em cadeia (ParseString) para executar.
+     * Realiza leituras no Banco de Dados
+     * Informe o nome da tabela, os termos da seleção e a parseString com os
+     * valores das condições
      *
      * @access public
      * @param string 	$table 			Nome da tabela
      * @param string 	$terms 			WHERE | ORDER | LIMIT :limit | OFFSET :offset
-     * @param string 	$parseString 	link={$link}&link2={$link2}
+     * @param string 	$parseString 	link={$link}&link2={$link2}&...
+     * @return void
      */
 	public function executeRead($table, $terms = null, $parseString = null)
 	{
@@ -70,11 +76,13 @@ class Read extends Conn
 	}
 
 	/**
-     * Executa a leitura de dados via query que deve ser montada manualmente para possibilitar seleção de multiplas tabelas em uma única query.
+     * Executa a leitura de dados via query que deve ser montada manualmente para
+     * possibilitar a seleção de multiplas tabelas em uma única query
      *
      * @access public
-     * @param string 	$query 			'SELECT * FROM {$tabela} WHERE id >= :id'
-     * @param string 	$parseString 	link={$link}&link2={$link2}
+     * @param string 	$query 			SELECT * FROM {$tabela} WHERE coluna = :link
+     * @param string 	$parseString 	link={$link}&link2={$link2}&...
+     * @return void
      */
 	public function completeRead($query, $parseString = null)
 	{
@@ -87,12 +95,12 @@ class Read extends Conn
 	}
 
 	/**
-     * Modifica links já existentes recorrentes do método ExecuteRead().
-     * O método pode ser usado para atualizar com Stored Procedures, modificando apenas os valores da condição.
-     * Use este método para editar múltiplas linhas.
+     * Modifica links já existentes recorrentes do método executeRead()
+     * Modifique apenas os valores da condição para re-executar
      *
      * @access public
-     * @param string 	$parseString 	id={$id}&...
+     * @param string 	$parseString 	link3={$link3}&...
+     * @return void
      */
 	public function setPlaces($parseString)
 	{
@@ -102,11 +110,11 @@ class Read extends Conn
 	}
 
 	/**
-     * Retorna um array com todos os resultados obtidos.
-     * Para obter um resultado específico, acesse pelo índice.
+     * Retorna um array com todos os resultados obtidos
+     * Para obter um resultado específico, acesse pelo índice do array
      *
      * getResult()['índiceDaPesquisa']['nomeDaColuna']
-     * ['índiceDaPesquisa'] por default é um INT.
+     * ['índiceDaPesquisa'] por default é int (0, 1, 2, etc.)
      *
      * @access public
      * @return array
@@ -117,7 +125,7 @@ class Read extends Conn
 	}
 
 	/**
-     * Retorna o número de registros encontrados pelo select.
+     * Retorna o número de registros encontrados pelo select
      *
      * @access public
      * @return int
@@ -135,6 +143,7 @@ class Read extends Conn
 	 * Obtém o PDO e prepara a query
 	 *
 	 * @access private
+	 * @return void
 	 */
 	private function connect()
 	{
@@ -144,9 +153,10 @@ class Read extends Conn
 	}
 
 	/**
-	 * Cria a sintaxe da query para o Prepared Statements.
+	 * Cria a sintaxe da query
 	 *
 	 * @access private
+	 * @return void
 	 */
 	private function getSyntax()
 	{
@@ -162,9 +172,10 @@ class Read extends Conn
 	}
 
 	/**
-	 * Obtém a conexão com a Base de Dados e executa a query
+	 * Obtém a conexão com o Banco de Dados e executa a query
 	 *
 	 * @access private
+	 * @return void
 	 */
 	private function execute()
 	{
@@ -177,8 +188,8 @@ class Read extends Conn
 		} catch (PDOException $e) {
 			$this->result = null;
 
-			$msg = '<b>Erro ao Consultar:</b> ' . $e->getMessage();
-			echo Message::get('danger', $msg, false);
+			$message = '<b>Erro ao Consultar:</b> ' . $e->getMessage();
+			echo Message::get('danger', $message, false);
 		}
 	}
 }

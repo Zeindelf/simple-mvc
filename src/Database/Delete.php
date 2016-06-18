@@ -7,8 +7,7 @@ use Database\Conn;
 use Helpers\Message;
 
 /**
- * Classe Delete
- * Realiza exclusões no Banco de Dados.
+ * Realiza exclusões no Banco de Dados
  */
 class Delete extends Conn
 {
@@ -18,36 +17,42 @@ class Delete extends Conn
 
 	/**
 	 * Tabela do Banco de Dados
+	 *
 	 * @var string
 	 */
 	private $table;
 
 	/**
 	 * Condições dos termos na exclusão de dados
+	 *
 	 * @var string
 	 */
 	private $terms;
 
 	/**
-	 * Executa os bindValues e manipula as ParseStrings
+	 * Executa os bindValues e manipula as parseStrings
+	 *
 	 * @var string
 	 */
 	private $places;
 
 	/**
 	 * Resultado das exclusões
+	 *
 	 * @var boolean
 	 */
 	private $result;
 
 	/**
 	 * Métodos da PDO
+	 *
 	 * @var PDOStatement
 	 */
 	private $delete;
 
 	/**
 	 * Conexão com PDO
+	 *
 	 * @var PDO
 	 */
 	private $conn;
@@ -57,13 +62,14 @@ class Delete extends Conn
 	//------------------------------------------------------------
 
 	/**
-     * Executa exclusões no Banco de Dados.
-     * Informe o nome da tabela, o dado a ser excluído e uma parseString para executar.
+     * Executa exclusões no Banco de Dados
+     * Informe o nome da tabela, as condições e a parseString referente às condições
      *
      * @access public
      * @param string 	$table 			Nome da tabela
-     * @param string 	$terms 			WHERE coluna = :coluna
-     * @param string 	$parseString 	link={$link}&link2={$link2}
+     * @param string 	$terms 			WHERE coluna = :link
+     * @param string 	$parseString 	link={$link}&link2={$link2}&...
+     * @return void
      */
 	public function executeDelete($table, $terms, $parseString)
 	{
@@ -77,12 +83,12 @@ class Delete extends Conn
 	}
 
 	/**
-     * Modifica links já existentes recorrentes do método ExecuteDelete().
-     * O método pode ser usado para atualizar com Stored Procedures, modificando apenas os valores da condição.
-     * Use este método para editar múltiplas linhas.
+     * Modifica links já existentes recorrentes do método executeDelete()
+	 * Modifique apenas os valores da condição para re-executar
      *
      * @access public
-     * @param string 	$parseString 	id={$id}&...
+     * @param string 	$parseString 	link3={$link3}&...
+     * @return void
      */
 	public function setPlaces($parseString)
 	{
@@ -93,9 +99,9 @@ class Delete extends Conn
 	}
 
 	/**
-     * Retorna true se não ocorrer erros, caso contrário, false.
-     * O retorno será true mesmo que os dados não sejam alterados e a query seja executada com sucesso.
-     * Para verificar alterações, execute o getRowCount();
+     * Retorna true se não ocorrer erros
+     * O retorno será true mesmo que os dados não sejam alterados e a query seja executada com sucesso
+     * Para verificar alterações, execute o getRowCount()
      *
      * @access public
      * @return boolean
@@ -106,7 +112,7 @@ class Delete extends Conn
 	}
 
 	/**
-     * Retorna o número de linhas alteradas no banco.
+     * Retorna o número de linhas afetadas no banco
      *
      * @access public
      * @return int
@@ -124,6 +130,7 @@ class Delete extends Conn
 	 * Obtém o PDO e prepara a query
 	 *
 	 * @access private
+	 * @return void
 	 */
 	private function connect()
 	{
@@ -132,9 +139,10 @@ class Delete extends Conn
 	}
 
 	/**
-	 * Cria a sintaxe da query para o Prepared Statements.
+	 * Cria a sintaxe da query
 	 *
 	 * @access private
+	 * @return void
 	 */
 	private function getSyntax()
 	{
@@ -142,9 +150,10 @@ class Delete extends Conn
 	}
 
 	/**
-	 * Obtém a conexão com a Base de Dados e executa a query
+	 * Obtém a conexão com o Banco de Dados e executa a query
 	 *
 	 * @access private
+	 * @return void
 	 */
 	private function execute()
 	{
@@ -156,8 +165,8 @@ class Delete extends Conn
 		} catch (PDOException $e) {
 			$this->result = null;
 
-			$msg = '<b>Erro ao Excluir:</b> ' . $e->getMessage();
-			echo Message::get('danger', $msg, false);
+			$message = '<b>Erro ao Excluir:</b> ' . $e->getMessage();
+			echo Message::get('danger', $message, false);
 		}
 	}
 }

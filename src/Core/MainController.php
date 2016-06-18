@@ -77,6 +77,7 @@ class MainController
 	 * Prepara os dados iniciais para a classe View fazer a renderização
 	 * para o Smarty Template Engine
 	 *
+	 * ----------------------------------------------------------------------------
 	 * Ao informar os dados a serem passados pelo array $data, para a renderização
 	 * no Smarty, eles estarão disponíveis em variáveis com o mesmo nome do primeiro
 	 * índice do array $data informado no Model
@@ -99,14 +100,29 @@ class MainController
 	 * Isso vai evitar ter que usar o array principal $data, que tornaria a variável muito
 	 * grande em caso de mais arrays dentro dele
 	 *
+	 * ----------------------------------------------------------------------------
+	 * No parâmetro $partials, caso queira informar um header/footer diferente
+	 * do padrão encontrado em /resources/views/templates/partials/geral, crie
+	 * ele neste mesmo diretório e apenas informe seu nome em um array
+	 *
+	 * $partials = [
+	 * 		'partial-header',
+	 * 		'partial-footer'
+	 * ];
+	 *
+	 * Índice [0] do array é para um Header e o índice [1] do array é para um Footer
+	 *
 	 * @param method 	$view 		Deve ser informado o método $this->template()
 	 * @param array 	$data 		Array com os dados tratados pelo Model
+	 * @param array 	$partials 	Header/Footer personalizado
 	 * @return view
 	 */
-	protected function view($template, array $data = null)
+	protected function view($template, array $data = null, array $partials = null)
 	{
 		$arrData = ( $data ?: null );
-		$this->view = new MainView($template, $arrData);
+		$arrPartials = ( $partials ?: null );
+
+		return $this->view = new MainView($template, $arrData, $arrPartials);
 	}
 
 	/**

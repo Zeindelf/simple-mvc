@@ -7,7 +7,7 @@
 			</a>
 		</div><!-- /.header__title -->
 
-		{include file="_partials/index-nav.tpl"}
+		{include file="partials/index-nav.tpl"}
 
 	</header>
 </div><!-- /.main__header -->

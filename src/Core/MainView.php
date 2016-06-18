@@ -47,10 +47,11 @@ class MainView
 	 *
 	 * @param method 	$template 		Recebe o método do controller
 	 * @param array 	$data 			Envia os dados recebidos para o Smarty
+	 * @param array 	$partials 		Header/Footer personalizado
 	 * @access public
 	 * @return view
 	 */
-	public function __construct($template, array $data = null)
+	public function __construct($template, array $data = null, array $partials = null)
 	{
 		$this->smartyInit();
 
@@ -64,7 +65,25 @@ class MainView
 			endforeach;
 		endif;
 
+		$pathPartials = Config::get('smarty.template') . DS . 'partials' . DS . 'geral' . DS;
+
+		if ( !is_null($partials) ):
+			$partialHeader = $pathPartials . $partials[0] . '.tpl';
+			$partialFooter = $pathPartials . $partials[1] . '.tpl';
+
+			$this->view->display($partialHeader);
+			$this->view->display($this->templatePath);
+			$this->view->display($partialFooter);
+
+			return true;
+		endif;
+
+		$mainHeader = $pathPartials . 'main-header.tpl';
+		$mainFooter = $pathPartials . 'main-footer.tpl';
+
+		$this->view->display($mainHeader);
 		$this->view->display($this->templatePath);
+		$this->view->display($mainFooter);
 	}
 
 	//------------------------------------------------------------
@@ -79,11 +98,13 @@ class MainView
 	 */
 	private function smartyInit()
 	{
+		$config = Config::get('smarty');
+
 		$this->view = new \Smarty;
-		$this->view->setConfigDir(Config::get('smarty.config'));
-		$this->view->setCacheDir(Config::get('smarty.cache'));
-		$this->view->setTemplateDir(Config::get('smarty.template'));
-		$this->view->setCompileDir(Config::get('smarty.compile'));
+		$this->view->setConfigDir($config['config']);
+		$this->view->setCacheDir($config['cache']);
+		$this->view->setTemplateDir($config['template']);
+		$this->view->setCompileDir($config['compile']);
 
 		return $this->view;
 	}

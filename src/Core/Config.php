@@ -12,29 +12,33 @@ class Config
     //------------------------------------------------------------
 
     /**
+     * Array contendo os valores
+     *
      * @access protected
      * @var array
      */
-    protected static $settings = array();
+    protected static $arr = [];
 
     //------------------------------------------------------------
     //  PUBLIC METHODS
     //------------------------------------------------------------
 
     /**
-     * Retorna true se existir o índice
+     * Seta o índice e o valor
      *
      * @access public
-     * @param string    $key        Informe o nome do índice para verificação
-     * @return bool
+     * @param string    $key        Informe o nome do índice
+     * @param mixed     $value      Informe o valor do índice
+     * @return array
      */
-    public static function exists($key)
+    public static function set($key, $value)
     {
-        return isset(static::$settings[$key]);
+        return static::$arr[$key] = $value;
     }
 
     /**
-     * Obtém o valor do índice
+     * Obtém o valor do índice informado
+     * Separe por ponto '.' os índices do array para acessar seu valor
      *
      * @access public
      * @param string    $key        Informe o nome do índice para obtenção
@@ -42,18 +46,47 @@ class Config
      */
     public static function get($key)
     {
-        return isset(static::$settings[$key]) ? static::$settings[$key] : null;
+        if ( self::exists($key) ):
+            $key = explode('.', $key);
+            $array = self::$arr[$key[0]];
+            unset($key[0]);
+
+            foreach ( $key as $k ):
+                $array = $array[$k];
+            endforeach;
+
+            return $array;
+        else:
+            echo '<b>N&atilde;o existe o &iacute;ndice informado no array.</b>';
+            return false;
+        endif;
     }
 
     /**
-     * Seta o valor do índice
+     * Retorna true se existir o índice
+     * Separe por ponto '.' os índices do array para a verificação
      *
      * @access public
-     * @param string    $key        Informe o nome do índice
-     * @param mixed     $value      Informe o valor do índice
+     * @param string    $key        Informe o nome do índice para verificação
+     * @return bool
      */
-    public static function set($key, $value)
+    public static function exists($key)
     {
-        static::$settings[$key] = $value;
+        $key = explode('.', $key);
+        $array = self::$arr[$key[0]];
+        unset($key[0]);
+
+        foreach ( $key as $k ):
+            if ( is_array(self::$arr) ):
+                $array = $array[$k];
+            else:
+                return false;
+            endif;
+        endforeach;
+
+        if ( !is_null($array) ):
+            return true;
+        else:
+            return false;
+        endif;
     }
-}

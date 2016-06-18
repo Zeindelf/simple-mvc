@@ -15,6 +15,13 @@ class MainView
 	//------------------------------------------------------------
 
 	/**
+	 * Contém a instância do Smarty
+	 *
+	 * @var object
+	 */
+	protected $view;
+
+	/**
 	 * Contém o nome da classe em que foi chamada a View
 	 *
 	 * @access private
@@ -54,7 +61,6 @@ class MainView
 	public function __construct($template, array $data = null, array $partials = null)
 	{
 		$this->smartyInit();
-
 		$this->setTplName($template);
 		$this->methodName = $this->methodName ?: 'index';
 		$this->templatePath = $this->className . DS . $this->methodName . '.tpl';
@@ -87,7 +93,7 @@ class MainView
 	}
 
 	//------------------------------------------------------------
-	//	PRIVATE METHODS
+	//	PROTECTED METHODS
 	//------------------------------------------------------------
 
 	/**
@@ -96,18 +102,20 @@ class MainView
 	 * @access private
 	 * @return Smarty object
 	 */
-	private function smartyInit()
+	protected function smartyInit()
 	{
-		$config = Config::get('smarty');
-
 		$this->view = new \Smarty;
-		$this->view->setConfigDir($config['config']);
-		$this->view->setCacheDir($config['cache']);
-		$this->view->setTemplateDir($config['template']);
-		$this->view->setCompileDir($config['compile']);
+		$this->view->setConfigDir(Config::get('smarty.config'));
+		$this->view->setCacheDir(Config::get('smarty.cache'));
+		$this->view->setTemplateDir(Config::get('smarty.template'));
+		$this->view->setCompileDir(Config::get('smarty.compile'));
 
 		return $this->view;
 	}
+
+	//------------------------------------------------------------
+	//	PRIVATE METHODS
+	//------------------------------------------------------------
 
 	/**
 	 * Recebe o backtrace e extrai o nome da classe e do método

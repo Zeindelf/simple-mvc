@@ -1,0 +1,167 @@
+<h1 id="simple-mvc">Simple MVC</h1>
+<p>Estrutura básica inicial de um MVC com PHP com uso do <a href="http://www.smarty.net/">Smarty Template Engine</a></p>
+<h1 id="configura-es">Configurações</h1>
+<h4 id="requerimentos">Requerimentos</h4>
+<ul>
+<li>Conhecer pelo menos o básico de:<ul>
+<li>Orientação a Objetos</li>
+<li>Design Pattern MVC</li>
+<li>Smarty (<a href="http://www.smarty.net/docs/en/">documentação aqui</a>)</li>
+</ul>
+</li>
+<li>PHP na versão igual ou acima da 5.5</li>
+<li>Utilizar a <a href="http://www.php-fig.org/psr/psr-4/">PSR-4</a>, tal como <strong>namespaces</strong></li>
+<li>Ter o Composer instalado</li>
+</ul>
+<h4 id="uso">Uso</h4>
+<ul>
+<li>Clone ou faça o download do repositório para sua máquina</li>
+<li>Tendo o Composer instalado, abra o terminal/prompt de comando, navegue até a pasta raiz e rode <code>composer update</code></li>
+<li>Configure as definições base em <code>/app/Config.example.php</code></li>
+<li>Em seguida, renomeie o arquivo para <code>Config.php</code></li>
+</ul>
+<h4 id="configs">Configs</h4>
+<p>Para cada array de configuração criado em <code>/app/Config</code>, cadastre o carregamento dele em <code>/app/Config/Load.php</code> apenas informando seu nome no array.</p>
+<h1 id="padr-es-de-nomenclaturas">Padrões de nomenclaturas</h1>
+<h2 id="controllers">Controllers</h2>
+<ul>
+<li><p>Os arquivos do controller devem começar com letra maiúscula e terminar com o sufixo <strong>Controller.php</strong></p>
+<ul>
+<li><code>ExemploController.php</code></li>
+</ul>
+</li>
+<li><p>Controller com nome composto deve utilizar <strong>UpperCamelCase</strong></p>
+<ul>
+<li><code>ExemploCompostoController.php</code></li>
+</ul>
+</li>
+<li><p>Toda action (métodos do controller) começa com letra minúscula e termina com o sufixo <strong>Action</strong></p>
+<ul>
+<li><code>exemploAction()</code></li>
+</ul>
+</li>
+<li><p>Actions com nome composto deve utilizar <strong>lowerCamelCase</strong></p>
+<ul>
+<li><code>exemploCompostoAction()</code></li>
+</ul>
+</li>
+<li><p>Se não houver um método <code>indexAction()</code> em seu controller, quando acessado, será retornado a página Error404</p>
+</li>
+<li><p>Controllers devem ser criados dentro do diretório <code>/app/Controllers</code></p>
+</li>
+<li><p>Seu controller deve extender de <strong>MainController</strong></p>
+</li>
+</ul>
+<h4 id="estrutura-do-controller">Estrutura do controller</h4>
+<pre><code class="lang-php">namespace App\Controller;
+
+use Core\MainController;
+
+class ExemploController extends MainController
+{
+    public function indexAction()
+    {
+        // Seu código
+    }
+}
+</code></pre>
+<h2 id="models">Models</h2>
+<ul>
+<li><p>Os arquivos de models devem começar com letra maiúscula e terminar com o sufixo <strong>Model.php</strong></p>
+<ul>
+<li><code>ExemploModel.php</code></li>
+</ul>
+</li>
+<li><p>Model com nome composto deve utilizar <strong>UpperCamelCase</strong></p>
+<ul>
+<li><code>ExemploCompostoModel.php</code></li>
+</ul>
+</li>
+<li><p>Os models devem ser criados dentro do diretório <code>/app/Models</code></p>
+</li>
+<li><p>Seu model deve extender de <strong>MainModel</strong></p>
+</li>
+</ul>
+<h4 id="estrutura-do-model">Estrutura do model</h4>
+<pre><code class="lang-php">namespace App\Models;
+
+use Core\MainModel;
+
+class ExemploModel extends MainModel
+{
+    // Seu código
+}
+</code></pre>
+<h2 id="views">Views</h2>
+<p>Para cada <strong>Controller</strong>, um diretório deve ser criado em <code>/resource/views/templates</code>, contendo o mesmo nome da classe em <strong>lowercase</strong> e sem o sufixo Controller</p>
+<ul>
+<li><strong>Classe:</strong> <code>class ExemploController</code></li>
+<li><strong>Diretório:</strong> <code>exemplo</code></li>
+</ul>
+<p>-</p>
+<p>Para <strong>Controllers</strong> com nome composto, cada palavra deverá ser separada por hífen <code>-</code></p>
+<ul>
+<li><strong>Classe:</strong> <code>class ExemploCompostoController</code></li>
+<li><strong>Diretório:</strong> <code>exemplo-composto</code></li>
+</ul>
+<p>-</p>
+<p>Para cada <strong>Action</strong> (métodos do Controller), deverá ser criado em seu respectivo diretório (o que leva o nome da classe) um arquivo com o mesmo nome do método em <strong>lowercase</strong>, sem o sufixo Action e com a extensão <strong>.tpl</strong></p>
+<ul>
+<li><strong>Action:</strong> <code>exemploAction()</code></li>
+<li><strong>Arquivo:</strong> <code>exemplo.tpl</code></li>
+</ul>
+<p>-</p>
+<p>Para actions com nome composto, cada palavra deverá ser separada por hífen <code>-</code></p>
+<ul>
+<li><strong>Action:</strong> <code>exemploCompostoAction()</code></li>
+<li><strong>Arquivo:</strong> <code>exemplo-composto.tpl</code></li>
+</ul>
+<h1 id="sintaxe">Sintaxe</h1>
+<h2 id="m-todos-dispon-veis-no-controller">Métodos disponíveis no Controller</h2>
+<pre><code class="lang-php">$this-&gt;model($model, $dir = null);
+</code></pre>
+<p>Instancia o model requisitado. Atribua-o a uma variável para obter o objeto.</p>
+<p>Ao utilizar o método <code>$this-&gt;model($model, $dir = null)</code>, no parâmetro <code>$model</code> deverá ser passado apenas uma string com o nome do model requisitado. O nome por sua vez deve ser apenas o nome do model sem o sufixo <strong>Model</strong>.</p>
+<p>Para o parâmetro <code>$dir</code>, caso queira organizar melhor seus Models por subdiretórios, informe a string com o nome do diretório neste parâmetro.</p>
+<p>-</p>
+<pre><code class="lang-php">$this-&gt;view($template, array $data = null, array $partials = null);
+</code></pre>
+<p>Instancia a <strong>MainView</strong> para que ela se encarregue de renderizar a página HTML.</p>
+<p>Ao utilizar o método <code>$this-&gt;view($template, $data = [], $partials = [])</code>, serão solicitados três parâmetros:</p>
+<ul>
+<li><code>$template</code> - apenas informe o método <code>$this-&gt;getTemplate()</code>;</li>
+<li><code>$data</code> - parâmetro opicional. Deve ser um array que será mandado para a view onde o <strong>Smarty</strong> terá acesso;</li>
+<li><code>$partials</code> - parâmetro opicional. Deve ser um array que será mandado para a view onde o <strong>Smarty</strong> terá acesso;</li>
+</ul>
+<p>Leia a documentação do método para mais detalhes e exemplos de uso.</p>
+<p>-</p>
+<pre><code class="lang-php">$this-&gt;redirect($path);
+</code></pre>
+<p>Realiza os direcionamentos das páginas.</p>
+<p>Ao utilizar o método <code>$this-&gt;redirect($path)</code>, será solicitado o nome do caminho para onde será redirecionado.
+Basta informar o caminho após a URL base. Ex:</p>
+<p>Caso queira que o direcionamento seja para: <code>dominio.com/teste/teste-redirecionamento</code>, informe em <code>$path</code> a string <code>&#39;/teste/teste-redirecionamento&#39;</code>.</p>
+<p>Caso for para algum erro, apenas informe seu número: 404, 503, etc...</p>
+<p><strong>Obs.:</strong> O uso de barra <code>/</code> é facultativo. Pode ser informado <code>&#39;/teste/teste-redirecionamento&#39;</code> ou <code>&#39;teste/teste-redirecionamento&#39;</code></p>
+<h2 id="m-todos-dispon-veis-no-model">Métodos disponíveis no Model</h2>
+<p><code>$this-&gt;newCreate()</code> retorna a instância da classe <strong>Create</strong> do Banco de Dados.</p>
+<pre><code class="lang-php">$create = $this-&gt;newCreate();
+$create-&gt;executeCreate(&#39;tabela&#39;, $dados[]);
+</code></pre>
+<p>-</p>
+<p><code>$this-&gt;newDelete()</code> retorna a instância da classe <strong>Delete</strong> do Banco de Dados.</p>
+<pre><code class="lang-php">$delete = $this-&gt;newDelete();
+$delete-&gt;executeDelete(&#39;tabela&#39;, &#39;WHERE id = :id&#39;, &#39;id=1&#39;);
+</code></pre>
+<p>-</p>
+<p><code>$this-&gt;newRead()</code> retorna a instância da classe <strong>Read</strong> do Banco de Dados.</p>
+<pre><code class="lang-php">$read = $this-&gt;newRead();
+$read-&gt;executeRead(&#39;tabela&#39;);
+</code></pre>
+<p>-</p>
+<p><code>$this-&gt;newUpdate()</code> retorna a instância da classe <strong>Update</strong> do Banco de Dados.</p>
+<pre><code class="lang-php">$update = $this-&gt;newUpdate();
+$update-&gt;executeUpdate(&#39;tabela&#39;, $dados[], &#39;WHERE name = :nome&#39;, &#39;nome=zeindelf&#39;);
+</code></pre>
+<p>-
+Nas classes do Banco de Dados localizadas em <code>/src/Database</code>, há exemplos de uso e  suas respectivas documentações.</p>

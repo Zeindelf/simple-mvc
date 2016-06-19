@@ -18,7 +18,6 @@ Estrutura básica inicial de um MVC com PHP com uso do [Smarty Template Engine](
 
 * Clone ou faça o download do repositório para sua máquina
 * Tendo o Composer instalado, abra o terminal/prompt de comando, navegue até a pasta raiz e rode `composer update`
-* Configure seu host para apontar para o diretório `/public`
 * Configure as definições base em `/app/Config.example.php`
 * Em seguida, renomeie o arquivo para `Config.php`
 

@@ -19,7 +19,7 @@ define('DEFAULT_TIMEZONE', 'America/Sao_Paulo');
  * SITE_NAME: 	Nome do site
  * SITE_DESC: 	Descrição do site
  */
-define('BASE_URL', 'http://localhost/Projects/simple-mvc/public');
+define('BASE_URL', 'http://localhost/Projects/simple-mvc');
 define('BASE_CSS', BASE_URL . '/assets/css');
 define('BASE_JS', BASE_URL . '/assets/js');
 define('SITE_NAME', 'Simple MVC');

@@ -124,6 +124,8 @@ Ao utilizar o método `$this->model($model, $dir = null)`, no parâmetro `$model
 
 Para o parâmetro `$dir`, caso queira organizar melhor seus Models por subdiretórios, informe a string com o nome do diretório neste parâmetro.
 
+**Obs.:** Mantenha os nomes iguais aos declarados nos models, com todos os UpperCamelCase. Caso contrário, pode haver um bug dependendo do host em que será hospedado.
+
 -
 
 ```php

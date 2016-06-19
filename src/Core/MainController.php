@@ -61,7 +61,6 @@ class MainController
 	protected function model($model, $dir = null)
 	{
 		$this->model = $model;
-		$this->model = ucfirst(strtolower($this->model));
 
 		if ( !is_null($dir) ):
 			$dir = ucfirst(strtolower($dir));

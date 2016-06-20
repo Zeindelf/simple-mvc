@@ -1,4 +1,5 @@
 /vendor/
 /app/Config.php
+README.html
 composer.lock
 prepros.cfg

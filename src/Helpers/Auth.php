@@ -3,9 +3,9 @@
 namespace Helpers;
 
 use Core\Config;
+use Core\Redirect;
 
 use Helpers\Flash;
-use Helpers\Redirect;
 use Helpers\Session;
 
 /**

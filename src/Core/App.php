@@ -2,7 +2,7 @@
 
 namespace Core;
 
-use Helpers\Redirect;
+use Core\Redirect;
 
 /**
  * Classe principal onde é feito todo o tratamento das requisições

@@ -2,7 +2,7 @@
 
 namespace Core;
 
-use Helpers\Redirect;
+use Core\Redirect;
 
 /**
  * Classe principal do Controller

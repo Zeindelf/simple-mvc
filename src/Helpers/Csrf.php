@@ -3,6 +3,7 @@
 namespace Helpers;
 
 use Core\Config;
+use Core\Request;
 
 /**
  * Classe para gerar um token para proteção contra CSRF

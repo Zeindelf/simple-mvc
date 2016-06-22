@@ -1,6 +1,6 @@
 <?php
 
-namespace Helpers;
+namespace Core;
 
 /**
  * Classe para requisições do tipo $_GET e $_POST

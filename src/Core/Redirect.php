@@ -1,6 +1,6 @@
 <?php
 
-namespace Helpers;
+namespace Core;
 
 use App\Controllers\Error404Controller as Error404;
 

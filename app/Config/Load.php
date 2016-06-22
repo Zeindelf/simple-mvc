@@ -11,6 +11,7 @@ Config::set('load', [
 	'cookie',
 	'database',
 	'hash',
+	'html',
 	'login',
 	'mail',
 	'message',

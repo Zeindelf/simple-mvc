@@ -11,4 +11,6 @@ Config::set('classAliases', [
 	'Http'    => '\Helpers\Http',
 	'Message' => '\Helpers\Message',
 	'Session' => '\Helpers\Session',
+
+	'Config'  => '\Core\Config',
 ]);

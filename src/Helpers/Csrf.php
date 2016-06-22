@@ -3,6 +3,7 @@
 namespace Helpers;
 
 use Core\Config;
+use Core\Redirect;
 use Core\Request;
 
 /**
@@ -28,8 +29,9 @@ class Csrf
 		endif;
 
 		$token = Session::get(Config::get('session.token'));
+		$tokenName = Config::get('html.tokenName');
 
-		return $token;
+		return '<input type="hidden" name="' . $tokenName . '" value="' . $token . '">';
 	}
 
 	/**

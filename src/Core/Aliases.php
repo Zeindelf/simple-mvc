@@ -20,16 +20,8 @@ class Aliases
     {
         $classes = Config::get('classAliases');
 
-        if(! is_array($classes)):
-            return false;
-        endif;
-
-        foreach ($classes as $classAlias => $className):
+        foreach ( $classes as $classAlias => $className ):
             $classAlias = '\\' .ltrim($classAlias, '\\');
-
-            if (class_exists($classAlias)):
-                throw new RuntimeException('Já existe uma classe chamada: ' . $classAlias);
-            endif;
 
             class_alias($className, $classAlias);
         endforeach;

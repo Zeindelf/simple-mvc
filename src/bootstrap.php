@@ -43,7 +43,5 @@ $app = new App;
 
 /**
  * Sessões temporárias
- *
- * Deleta a sessão de Flash Message
  */
-Session::delete('flash');
+Session::tmp();

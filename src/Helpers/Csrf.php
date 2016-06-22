@@ -17,9 +17,15 @@ class Csrf
 
 	/**
 	 * Gera o token e armazena na sessão
+	 * Retorna o input hidden montado
+	 *
+	 * Na view com Smarty, armazene o método em uma variável:
+	 * {assign var=csrfToken value=Csrf::generate()}
+	 * Após, é só utiliza-la dentro do formulário:
+	 * {$csrfToken}
 	 *
 	 * @access public
-	 * @return session
+	 * @return string
 	 */
 	public static function generate()
 	{

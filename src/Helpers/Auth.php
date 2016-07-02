@@ -38,29 +38,29 @@ class Auth
 	 */
 	public static function user($status)
 	{
-		switch ( $status ):
+		switch ( $status ) {
 			// Visitante
 			case 'guest':
-				if ( !Session::exists(Config::get('session.user')) ):
+				if ( !Session::exists(Config::get('session.user')) ) {
 					return Redirect::to(404);
-				endif;
+				}
 				break;
 
 			// Logado
 			case 'logged':
-				if ( Session::exists(Config::get('session.user')) ):
+				if ( Session::exists(Config::get('session.user')) ) {
 					return Redirect::to();
-				endif;
+				}
 				break;
 
 			// Negado
 			case 'denied':
-				if ( !Session::exists(Config::get('session.user')) ):
+				if ( !Session::exists(Config::get('session.user')) ) {
 					$message = '<p>Por favor, logue-se para acessar esta área.</p>';
 					Flash::warning($message);
 
 					return Redirect::to('login');
-				endif;
+				}
 				break;
 
 			// Privado
@@ -70,6 +70,6 @@ class Auth
 
 			default:
 				return false;
-		endswitch;
+		}
 	}
 }

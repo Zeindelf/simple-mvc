@@ -62,12 +62,12 @@ class MainController
 	{
 		$this->model = $model;
 
-		if ( !is_null($dir) ):
+		if ( !is_null($dir) ) {
 			$dir = ucfirst(strtolower($dir));
 			$this->model = 'App\\Models\\' . $dir . '\\' . $this->model . 'Model';
-		else:
+		} else {
 			$this->model = 'App\\Models\\' . $this->model . 'Model';
-		endif;
+		}
 
 		return new $this->model;
 	}

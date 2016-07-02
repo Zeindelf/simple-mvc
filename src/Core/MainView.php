@@ -65,15 +65,15 @@ class MainView
 		$this->methodName = $this->methodName ?: 'index';
 		$this->templatePath = $this->className . DS . $this->methodName . '.tpl';
 
-		if ( !is_null($data) ):
-			foreach ( $data as $keys => $values ):
+		if ( !is_null($data) ) {
+			foreach ( $data as $keys => $values ) {
 				$this->view->assign($keys, $values);
-			endforeach;
-		endif;
+			}
+		}
 
 		$pathPartials = Config::get('smarty.template') . DS . 'partials' . DS . 'geral' . DS;
 
-		if ( !is_null($partials) ):
+		if ( !is_null($partials) ) {
 			$partialHeader = $pathPartials . $partials[0] . '.tpl';
 			$partialFooter = $pathPartials . $partials[1] . '.tpl';
 
@@ -82,7 +82,7 @@ class MainView
 			$this->view->display($partialFooter);
 
 			return true;
-		endif;
+		}
 
 		$mainHeader = $pathPartials . 'main-header.tpl';
 		$mainFooter = $pathPartials . 'main-footer.tpl';

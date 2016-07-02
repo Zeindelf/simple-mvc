@@ -53,11 +53,11 @@ class Load
 
 		$this->setDir();
 
-		foreach ( $config as $load ):
-			if ( file_exists($this->configDir . $load . '.php') ):
+		foreach ( $config as $load ) {
+			if ( file_exists($this->configDir . $load . '.php') ) {
 				require_once $this->configDir . $load . '.php';
-			endif;
-		endforeach;
+			}
+		}
 	}
 
 	/**

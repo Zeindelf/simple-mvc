@@ -20,9 +20,9 @@ class Http
 	 */
 	public static function checkReferer($refererUrl)
 	{
-		if ( BASE_URL . '/' . $refererUrl === self::referer() ):
+		if ( BASE_URL . '/' . $refererUrl === self::referer() ) {
 			return true;
-		endif;
+		}
 
 		return false;
 	}

@@ -51,11 +51,11 @@ abstract class Conn
 	private static function getInstance()
 	{
 		try {
-			if ( !isset(self::$instance) ):
+			if ( !isset(self::$instance) ) {
 				$dsn = Config::get('database.driver') . ':host=' . Config::get('database.hostname') . ';dbname=' . Config::get('database.database');
 				$options = [PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES UTF8'];
 				self::$instance = new PDO($dsn, Config::get('database.username'), Config::get('database.password'), $options);
-			endif;
+			}
 
 		} catch ( PDOException $e ) {
 			$message = 	'<p>Falha na conexão com a Base de Dados.</p><p>' . $e->getMessage() . '</p>';

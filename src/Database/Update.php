@@ -168,9 +168,9 @@ class Update extends Conn
 	 */
 	private function getSyntax()
 	{
-		foreach ($this->data as $key => $value):
+		foreach ($this->data as $key => $value) {
 			$places[] = $key . ' = :' . $key;
-		endforeach;
+		}
 
 		$places = implode(', ', $places);
 		$this->update = 'UPDATE ' . $this->table . ' SET ' . $places . ' ' . $this->terms;

@@ -39,26 +39,26 @@ class Redirect
 	{
 		self::$location = $location;
 
-		if ( self::$location ):
-			if ( is_numeric(self::$location) ):
+		if ( self::$location ) {
+			if ( is_numeric(self::$location) ) {
 
-				switch ( self::$location ):
+				switch ( self::$location ) {
 					case 404:
 						return new Error404;
 						break;
-				endswitch;
+				}
 
-			elseif ( self::$location === 'index' || self::$location === '/index' ):
+			} elseif ( self::$location === 'index' || self::$location === '/index' ) {
 				self::$location = BASE_URL;
-			elseif ( substr(self::$location, 0, 1) === '/' ):
+			} elseif ( substr(self::$location, 0, 1) === '/' ) {
 				self::$location = BASE_URL . self::$location;
-			else:
+			} else {
 				self::$location = BASE_URL . '/' . self::$location;
-			endif;
+			}
 
-		else:
+		} else {
 			self::$location = BASE_URL;
-		endif;
+		}
 
 		header('Location: ' . self::$location);
 		die();

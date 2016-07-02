@@ -13,20 +13,20 @@ define('PUBLIC_DIR', realpath(__DIR__));
 /**
  * Verifica e carrega o autoload do Composer
  */
-if ( file_exists(ROOT_DIR . DS . 'vendor' . DS . 'autoload.php') ):
+if ( file_exists(ROOT_DIR . DS . 'vendor' . DS . 'autoload.php') ) {
     require_once ROOT_DIR . DS . 'vendor' . DS . 'autoload.php';
-else:
+} else {
     include_once ROOT_DIR . DS . 'misc' . DS . 'warnings' . DS . 'missing-composer.php';
     die();
-endif;
+}
 
 /**
  * Checa se existe o arquivo de configuração
  */
-if ( !is_readable(APP_DIR . DS .'Config.php') ):
+if ( !is_readable(APP_DIR . DS .'Config.php') ) {
     include_once ROOT_DIR . DS . 'misc' . DS . 'warnings' . DS . 'missing-config.php';
     die();
-endif;
+}
 
 /**
  * Inicializa toda a aplicação

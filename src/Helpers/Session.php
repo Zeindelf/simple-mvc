@@ -37,13 +37,13 @@ class Session
 	 */
 	public static function init()
 	{
-		if ( !self::$sessionStarted ):
-			if ( !session_id() ):
+		if ( !self::$sessionStarted ) {
+			if ( !session_id() ) {
 				session_start();
-			endif;
+			}
 
 			self::$sessionStarted = true;
-		endif;
+		}
 	}
 
 	/**
@@ -55,17 +55,17 @@ class Session
 	 */
 	public static function exists($name)
 	{
-		if ( strpos($name, '.') ):
+		if ( strpos($name, '.') ) {
 			$key = explode('.', $name);
 
-			if ( isset($_SESSION[$key[0]][$key[1]]) ):
+			if ( isset($_SESSION[$key[0]][$key[1]]) ) {
 				return true;
-			endif;
-		else:
-			if ( isset($_SESSION[$name]) ):
+			}
+		} else {
+			if ( isset($_SESSION[$name]) ) {
 				return true;
-			endif;
-		endif;
+			}
+		}
 
 		return false;
 	}
@@ -80,13 +80,13 @@ class Session
 	 */
 	public static function set($name, $value)
 	{
-		if ( strpos($name, '.') ):
+		if ( strpos($name, '.') ) {
 			$key = explode('.', $name);
 
 			return $_SESSION[$key[0]][$key[1]] = $value;
-		else:
+		} else {
 			return $_SESSION[$name] = $value;
-		endif;
+		}
 
 		return null;
 	}
@@ -100,17 +100,17 @@ class Session
 	 */
 	public static function get($name)
 	{
-		if ( strpos($name, '.') ):
+		if ( strpos($name, '.') ) {
 			$key = explode('.', $name);
 
-			if ( isset($_SESSION[$key[0]][$key[1]]) ):
+			if ( isset($_SESSION[$key[0]][$key[1]]) ) {
 				return $_SESSION[$key[0]][$key[1]];
-			endif;
-		else:
-			if ( self::exists($name) ):
+			}
+		} else {
+			if ( self::exists($name) ) {
 				return $_SESSION[$name];
-			endif;
-		endif;
+			}
+		}
 
 		return null;
 	}
@@ -124,17 +124,17 @@ class Session
 	 */
 	public static function delete($name)
 	{
-		if ( strpos($name, '.') ):
+		if ( strpos($name, '.') ) {
 			$key = explode('.', $name);
 
-			if ( isset($_SESSION[$key[0]][$key[1]]) ):
+			if ( isset($_SESSION[$key[0]][$key[1]]) ) {
 				unset($_SESSION[$key[0]][$key[1]]);
-			endif;
-		else:
-			if ( self::exists($name) ):
+			}
+		} else {
+			if ( self::exists($name) ) {
 				unset($_SESSION[$name]);
-			endif;
-		endif;
+			}
+		}
 
 		return null;
 	}
@@ -150,13 +150,13 @@ class Session
 	{
 		$sessionTmp = Config::get('session.delete');
 
-		if ( is_array($sessionTmp) ):
-			foreach ( $sessionTmp as $tmp ):
+		if ( is_array($sessionTmp) ) {
+			foreach ( $sessionTmp as $tmp ) {
 				self::delete($tmp);
-			endforeach;
+			}
 
 			return true;
-		endif;
+		}
 
 		return null;
 	}
@@ -169,8 +169,8 @@ class Session
 	 */
 	public static function destroy()
 	{
-		if ( self::$sessionStarted ):
+		if ( self::$sessionStarted ) {
 			session_destroy();
-		endif;
+		}
 	}
 }

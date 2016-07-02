@@ -56,7 +56,7 @@ class Hash
 	 */
 	public static function randomHash($length = null)
 	{
-		switch ( $length ):
+		switch ( $length ) {
 			case 8:
 				return hash('crc32', uniqid(rand(), true));
 				break;
@@ -82,7 +82,7 @@ class Hash
 
 			default:
 				echo '<b>Informe a quantidade de caracteres: 8, 16, 32, 64 ou 128</b>';
-		endswitch;
+		}
 	}
 
 	/**
@@ -100,9 +100,9 @@ class Hash
 		$max = strlen($seed) - 1;
 		$string = '';
 
-		for ( $i = 0; $i < $length; ++$i ):
+		for ( $i = 0; $i < $length; ++$i ) {
 		    $string .= $seed[mt_rand(0, $max)];
-		endfor;
+		}
 
         return $string;
     }
@@ -122,9 +122,9 @@ class Hash
 		$max = strlen($seed) - 1;
 		$string = '';
 
-		for ( $i = 0; $i < $length; ++$i ):
+		for ( $i = 0; $i < $length; ++$i ) {
 		    $string .= $seed[mt_rand(0, $max)];
-		endfor;
+		}
 
         return $string;
     }

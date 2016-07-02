@@ -29,10 +29,10 @@ class Csrf
 	 */
 	public static function generate()
 	{
-		if ( !Session::exists(Config::get('session.token')) ):
+		if ( !Session::exists(Config::get('session.token')) ) {
 			$token = md5(uniqid(rand()));
 			Session::set(Config::get('session.token'), $token);
-		endif;
+		}
 
 		$token = Session::get(Config::get('session.token'));
 		$tokenName = Config::get('html.tokenName');
@@ -53,16 +53,16 @@ class Csrf
 		$sessionToken = Session::get(Config::get('session.token'));
 		$token = Request::post(Config::get('session.token'));
 
-		if ( $sessionToken === $token ):
+		if ( $sessionToken === $token ) {
 			Session::set($sessionDataName, Request::post());
 			Session::delete(Config::get('session.token'));
 
 			return true;
-		else:
+		} else {
 			// CSRF message
 			Flash::danger(Config::get('message.csrf'));
 
 			return Redirect::to($redirectTo);
-		endif;
+		}
 	}
 }

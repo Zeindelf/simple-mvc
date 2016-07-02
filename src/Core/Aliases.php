@@ -20,10 +20,10 @@ class Aliases
     {
         $classes = Config::get('classAliases');
 
-        foreach ( $classes as $classAlias => $className ):
+        foreach ( $classes as $classAlias => $className ) {
             $classAlias = '\\' .ltrim($classAlias, '\\');
 
             class_alias($className, $classAlias);
-        endforeach;
+        }
     }
 }

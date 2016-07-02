@@ -93,9 +93,9 @@ class Mailer extends MainView
 		$this->message->to($to);
 		$this->message->subject($subject);
 
-		if ( $this->mailer->Send() ):
+		if ( $this->mailer->Send() ) {
 			return true;
-		endif;
+		}
 
 		return false;
 	}

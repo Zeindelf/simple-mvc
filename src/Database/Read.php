@@ -67,9 +67,9 @@ class Read extends Conn
      */
 	public function executeRead($table, $terms = null, $parseString = null)
 	{
-		if (!empty($parseString)):
+		if (!empty($parseString)) {
 			parse_str($parseString, $this->places);
-		endif;
+		}
 
 		$this->select = 'SELECT * FROM ' . $table . ' ' . $terms;
 		$this->execute();
@@ -87,9 +87,10 @@ class Read extends Conn
 	public function completeRead($query, $parseString = null)
 	{
 		$this->select = (string) $query;
-		if (!empty($parseString)):
+
+		if (!empty($parseString)) {
 			parse_str($parseString, $this->places);
-		endif;
+		}
 
 		$this->execute();
 	}
@@ -160,15 +161,15 @@ class Read extends Conn
 	 */
 	private function getSyntax()
 	{
-		if ($this->places):
-			foreach ($this->places as $key => $value):
-				if ($key == 'limit' || $key == 'offset'):
+		if ($this->places) {
+			foreach ($this->places as $key => $value) {
+				if ($key == 'limit' || $key == 'offset') {
 					$value = (int) $value;
-				endif;
+				}
 
 				$this->read->bindValue(':' . $key, $value, ( is_int($value) ? PDO::PARAM_INT : PDO::PARAM_STR ));
-			endforeach;
-		endif;
+			}
+		}
 	}
 
 	/**

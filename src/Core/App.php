@@ -69,9 +69,9 @@ class App
 		$this->parseUrl();
 		$this->setController();
 
-		if ( $this->result ):
+		if ( $this->result ) {
 			$this->setMethod();
-		endif;
+		}
 	}
 
 	//------------------------------------------------------------
@@ -89,10 +89,10 @@ class App
 		$this->url = strip_tags(trim(filter_input(INPUT_GET, 'uri', FILTER_DEFAULT)));
 		$this->url = $this->url ?: 'index';
 
-		if ( isset($this->url) ):
+		if ( isset($this->url) ) {
 			$this->url = rtrim($this->url, '/');
 			$this->url = explode('/', $this->url);
-		endif;
+		}
 
 		return $this->url;
 	}
@@ -108,21 +108,21 @@ class App
 	{
 		$verify = strpos($this->url[0], '-');
 
-		if ( $verify ):
+		if ( $verify ) {
 			$this->url[0] = $this->setUrl($this->url[0]);
-		else:
+		} else {
 			$this->url[0] = ucfirst(strtolower($this->url[0]));
-		endif;
+		}
 
 		$this->url[0] .= 'Controller';
 
-		if ( file_exists('../app/Controllers/' . $this->url[0] . '.php') ):
+		if ( file_exists('../app/Controllers/' . $this->url[0] . '.php') ) {
 			$this->controller = $this->url[0];
 			unset($this->url[0]);
-		else:
+		} else {
 			$this->setPageNotFound();
 			return $this->result;
-		endif;
+		}
 
 		$this->controller = 'App\\Controllers\\' . $this->controller;
 		$this->controller = new $this->controller;
@@ -139,26 +139,26 @@ class App
 	 */
 	private function setMethod()
 	{
-		if ( isset($this->url[1]) ):
+		if ( isset($this->url[1]) ) {
 			$verify = strpos($this->url[1], '-');
 
-			if ( $verify ):
+			if ( $verify ) {
 				$this->url[1] = $this->setUrl($this->url[1]);
 				$this->url[1] = lcfirst($this->url[1]);
-			endif;
+			}
 
 			$this->url[1] .= 'Action';
 
-			if ( method_exists($this->controller, $this->url[1]) ):
+			if ( method_exists($this->controller, $this->url[1]) ) {
 				$this->method = $this->url[1];
 				unset($this->url[1]);
-			elseif ( get_class($this->controller) === 'App\Controllers\Error404Controller' ):
+			} elseif ( get_class($this->controller) === 'App\Controllers\Error404Controller' ) {
 				return false;
-			else:
+			} else {
 				$this->setPageNotFound();
 				return $this->result;
-			endif;
-		endif;
+			}
+		}
 
 		$this->method = $this->method ?: 'indexAction';
 		$this->params = $this->url ? array_values($this->url) : [];
@@ -176,10 +176,10 @@ class App
 	 */
 	private function setUrl($url)
 	{
-		if ( substr($url, -1) === '-' ):
+		if ( substr($url, -1) === '-' ) {
 			$this->setPageNotFound();
 			return $this->result;
-		endif;
+		}
 
 		$url = explode('-', strtolower($url));
 		$url = implode(array_map('ucfirst', $url));

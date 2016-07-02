@@ -24,15 +24,15 @@ class Request
 	 */
     public static function get($key = null, $filter = FILTER_DEFAULT)
     {
-        if ($key === null):
+        if ($key === null) {
         	$get = filter_input_array(INPUT_GET, $filter);
-        	if ( is_array($get) ):
+        	if ( is_array($get) ) {
         		$get = array_map('trim', $get);
         		$get = array_map('strip_tags', $get);
 
             	return isset($get) ? $get : null;
-            endif;
-        endif;
+            }
+        }
 
         $get = filter_input(INPUT_GET, $key, $filter);
         $get = strip_tags(trim($get));
@@ -52,15 +52,15 @@ class Request
 	 */
     public static function post($key = null, $filter = FILTER_DEFAULT)
     {
-        if ($key === null):
+        if ($key === null) {
         	$post = filter_input_array(INPUT_POST, $filter);
-        	if ( is_array($post) ):
+        	if ( is_array($post) ) {
         		$post = array_map('trim', $post);
         		$post = array_map('strip_tags', $post);
 
             	return isset($post) ? $post : null;
-            endif;
-        endif;
+            }
+        }
 
         $post = filter_input(INPUT_POST, $key, $filter);
         $post = strip_tags(trim($post));
